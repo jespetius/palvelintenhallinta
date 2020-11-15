@@ -73,3 +73,71 @@ a1a3d433 (jespetius         2020-11-15 18:25:12 +0200  3) Tämä on palautus Pal
 Näyttää rivi kerrallaan kuka on kyseisen pätkän koodia tehnyt.
 
 
+e) Tee tyhmä muutos gittiin, älä tee commit:tia. Tuhoa huonot muutokset ‘git reset –hard’. Huomaa, että tässä toiminnossa ei ole peruutusnappia.
+
+Poistin kaikki rivit paitsi otsikon, jonka jälkeen tallensin tiedoston.
+Annoin komennon:
+	git reset --hard
+Ja kaikki oli tallessa, mitä olin viimeksi puskenut githubiin.
+
+
+f) Tee uusi salt-moduli. Voit asentaa ja konfiguroida minkä vain uuden ohjelman: demonin, työpöytäohjelman tai komentokehotteesta toimivan ohjelman. Käytä tarvittaessa ‘find -printf “%T+ %p\n”|sort’ löytääksesi uudet asetustiedostot. (Tietysti eri ohjelma kuin aiemmissa tehtävissä, tarkoitushan on harjoitella Salttia)
+Aloitan puhtaalta pöydältä kokonaan. Ensiksi asennan orjan ja herran:
+	sudo apt-get -y install salt-master salt-minion
+
+Seuraavaksi menin minionin asetuksiin
+	sudoedit /etc/salt/minion
+ ja lisäsin asetustiedostoon seuraavat rivit
+	master: 10.0.2.15
+	id: jamesbond
+
+Annoin seuraavat käskyt:
+
+	sudo systemctl restart salt-minion.service 
+	sudo salt-key -A
+	y
+	sudo salt '*' cmd.run 'whoami'
+
+Sain vastaukseksi:
+jamesbond:
+    root
+
+Sitten aloin työstämään moduulia:
+	sudo mkdir -p /srv/salt/
+	cd /srv/salt/
+	sudo mkdir viikko3
+	cd viikko3
+	sudoedit init.sls
+
+/tmp/viikko3.txt:
+  file.managed:
+    - source: salt://viikko3/viikko3.txt
+
+	sudoedit viikko3.txt
+
+Veckan 3
+
+	sudo salt '*' state.apply viikko3
+
+
+          ID: /tmp/viikko3.txt
+    Function: file.managed
+      Result: True
+     Comment: File /tmp/viikko3.txt updated
+     Started: 19:03:37.876816
+    Duration: 34.354 ms
+     Changes:   
+              ----------
+              diff:
+                  New file
+              mode:
+                  0644
+
+Summary for jamesbond
+------------
+Succeeded: 1 (changed=1)
+Failed:    0
+------------
+Total states run:     1
+
+
