@@ -1,4 +1,4 @@
-##Palvelinten Hallinta Viikko 3
+#Palvelinten Hallinta Viikko 3
 
 Tämä on palautus Palvelinten hallinta kurssille viikko 3.
 
@@ -59,11 +59,11 @@ Tein juuri commitin, joten ei näy mitään. Kokeilen uudestaan:
 
 	git diff viikko3.md
 
--       git diff
-+       git diff viikko3.md
-+
+- git diff
++ git diff viikko3.md
 +Tein juuri commitin, joten ei näy mitään. Kokeilen uudestaan:
-+
+
+
 git diff kertoo mikä ero nykyisellä ja edellisellä versiolla on.
 
 	git blame viikko3.md
