@@ -1,10 +1,10 @@
-#Palvelinten Hallinta Viikko 3
+# Palvelinten Hallinta Viikko 3
 
 Tämä on palautus Palvelinten hallinta kurssille viikko 3.
 
 a) MarkDown. Tee tämän tehtävän raportti MarkDownina
 
-d) Näytä omalla git-varastollasi esimerkit komennoista ‘git log’, ‘git diff’ ja ‘git blame’. Selitä tulokset.
+## d) Näytä omalla git-varastollasi esimerkit komennoista ‘git log’, ‘git diff’ ja ‘git blame’. Selitä tulokset.
 
 	git log
 
