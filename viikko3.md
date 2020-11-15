@@ -53,4 +53,23 @@ Date:   Thu Nov 12 08:49:39 2020 +0200
 
 Nämä kaikki on minun tekemiä committeja tähän projektiin, jonka tein 12.11.2020 oppitunnilla.
 
-	git diff
+	git diff viikko3.md
+
+Tein juuri commitin, joten ei näy mitään. Kokeilen uudestaan:
+
+	git diff viikko3.md
+
+-       git diff
++       git diff viikko3.md
++
++Tein juuri commitin, joten ei näy mitään. Kokeilen uudestaan:
++
+git diff kertoo mikä ero nykyisellä ja edellisellä versiolla on.
+
+	git blame viikko3.md
+
+a1a3d433 (jespetius         2020-11-15 18:25:12 +0200  3) Tämä on palautus Palvelinten hallinta kurssille viikko 3.
+
+Näyttää rivi kerrallaan kuka on kyseisen pätkän koodia tehnyt.
+
+
