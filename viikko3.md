@@ -103,6 +103,7 @@ jamesbond:
     root
 
 Sitten aloin työstämään moduulia:
+
 	sudo mkdir -p /srv/salt/
 	cd /srv/salt/
 	sudo mkdir viikko3
