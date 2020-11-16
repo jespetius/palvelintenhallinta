@@ -141,3 +141,108 @@ Failed:    0
 Total states run:     1
 
 
+Päätin että teen isomman  moduulin. Latasin kasan ohjelmia komennolla
+	sudo apt -y install gimp neofetch htop speedcrunch
+
+Testasin kaikki yksitellen:
+	gimp
+	neofetch
+	htop	
+	speedcrunch
+
+Muokkasin init.sls
+
+/tmp/viikko3.txt:
+  file.managed:
+    - source: salt://viikko3/viikko3.txt
+
+downloads:
+  pkg.installed:
+    - name: gimp
+
+Seuraavaksi testasin:
+	sudo salt '*' state.apply viikko3
+
+
+jamesbond:
+----------
+          ID: /tmp/viikko3.txt
+    Function: file.managed
+      Result: True
+     Comment: File /tmp/viikko3.txt is in the correct state
+     Started: 18:08:45.147133
+    Duration: 76.192 ms
+     Changes:   
+----------
+          ID: downloads
+    Function: pkg.installed
+        Name: gimp
+      Result: True
+     Comment: All specified packages are already installed
+     Started: 18:08:50.382129
+    Duration: 139.442 ms
+     Changes:   
+
+Summary for jamesbond
+------------
+Succeeded: 2
+Failed:    0
+------------
+Total states run:     2
+Total run time: 215.634 ms
+
+lisäsin loputkin ohjelmat
+
+downloads:
+  pkg.installed:
+    - pkgs:
+      - gimp
+      - neofetch
+      - htop
+      - speedcrunch
+
+Vastaukseksi sain:
+
+         ID: downloads
+    Function: pkg.installed
+      Result: True
+     Comment: All specified packages are already installed
+     Started: 18:19:22.034262
+    Duration: 119.922 ms
+     Changes:   
+
+Summary for jamesbond
+------------
+Succeeded: 2
+Failed:    0
+
+
+Poistin kaikki ohjelmat komennolla:
+	sudo apt autoremove  --purge htop gimp speedcrunch neofetch 
+Testasin poistuiko kaikki oikeasti:
+	gimp
+Command 'gimp' not found, but can be installed with:
+
+Seuraavaksi annoin komennon:
+	sudo salt '*' state.apply viikko3
+
+
+          ID: downloads
+    Function: pkg.installed
+      Result: True
+     Comment: 4 targeted packages were installed/updated.
+     Started: 18:27:48.919065
+    Duration: 69386.806 ms
+
+
+
+Summary for jamesbond
+------------
+Succeeded: 2 (changed=1)
+Failed:    0
+------------
+Total states run:     2
+Total run time:  69.457 s
+
+
+
